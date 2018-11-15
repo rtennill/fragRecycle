@@ -1057,6 +1057,7 @@ function recycle()
 		end
 
 		confirm_recycle(recycle_table)
+		test_frame()
 		okframe.Text:SetText(outtext)
 		okframe:SetVisible(true)
 	else
@@ -1064,6 +1065,41 @@ function recycle()
 	end
 end
 
+function test_frame()
+	local k = 0
+	local frame_context = UI.CreateContext("test_ctx")
+	local okframe = UI.CreateFrame("Frame", "okframe", frame_context)
+	okframe.mouseDown	= false
+	okframe.mouseOffsetX = 20
+	okframe.mouseOffsetY = 20
+	okframe.Width = 320
+	okframe.Height = 100
+	okframe.FrameX = (UIParent:GetWidth() / 2) - (okframe.Width / 2)
+	okframe.FrameY = (UIParent:GetHeight() / 2) - (okframe.Height / 3)
+
+
+	okframe:SetLayer(21)
+	okframe:SetBackgroundColor(0.1,0.1,0.1,0.5)
+
+	okframe:SetWidth(okframe.Width)
+	okframe:SetHeight(okframe.Height)
+	okframe:SetPoint(0,0,UIParent,0,0,okframe.FrameX,okframe.FrameY)
+
+	okframe.icon = UI.CreateFrame("Texture", "f.icon", okframe)
+	okframe.icon:SetLayer(2)
+	okframe.icon:SetVisible(true)
+	okframe.icon:SetPoint("TOPLEFT", okframe, "TOPLEFT", 0, 0)
+	okframe.icon:SetTexture("Rift", "fatestone_09_peach.dds")
+	okframe.icon:SetWidth(50)
+	okframe.icon:SetHeight(50)
+
+	okframe.Text = UI.CreateFrame("Text", "f.cb.Text", okframe)
+	okframe.Text:SetLayer(11)
+	okframe.Text:SetFontSize(16)
+	okframe.Text:SetText(tostring(okframe.Text:GetFontSize()))
+	okframe.Text:SetPoint("CENTER", okframe, "CENTER", 0,-20)
+	okframe.Text:SetVisible(true)
+end
 
 -- create a dialog showing the fragments to be recycled along with yes/no buttons
 -- layout: icon | name | stats (would be great to identify the primary stat)
