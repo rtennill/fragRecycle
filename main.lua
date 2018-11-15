@@ -1055,11 +1055,62 @@ function recycle()
 		else
 			outtext = outtext .. tostring(table.getn(recycle_table)) .. " fragmnets"
 		end
+
+		confirm_recycle(recycle_table)
 		okframe.Text:SetText(outtext)
 		okframe:SetVisible(true)
 	else
 		print("no fragments found to recycle")
 	end
+end
+
+
+-- create a dialog showing the fragments to be recycled along with yes/no buttons
+-- layout: icon | name | stats (would be great to identify the primary stat)
+function confirm_recycle(recycle_table)
+	local frame_context = UI.CreateContext("FRAME")
+	recycleFrame = UI.CreateFrame("Frame", "recycleFrame", frame_context)
+	recycleFrame.mouseDown	= false
+	recycleFrame.mouseOffsetX = 0
+	recycleFrame.mouseOffsetY = 0
+	recycleFrame.framelock = false
+	recycleFrame.Width = 500
+	recycleFrame.Height = 300
+	local nameToStatLUT = {
+		["Vital"] = "maxHP",
+		["Enlightened"] = "intelligence",
+		["Sagacious"] = "wisdom",
+		["Mighty"] = "strength",
+		["Nimble"] = "dexterity",
+		["Stalwart"] = "endurance",
+		["Vital"] = "maxHealth",
+		["Aggressive"] = "powerAttack",
+		["Unerring"] = "critAttack",
+		["Calculating"] = "powerSpell",
+		["Precise"] = "critSpell",
+		["Punishing"] = "critPower",
+		["Impenetrable"] = "guard",
+		["Unassailable"] = "block",
+		["Elusive"] = "dodge",
+	}
+
+	local i
+	for i=1,#recycle_table do
+		local frag_id = recycle_table[i]
+		local frag_details = Inspect.Item.Detail(frag_id)
+		local primary_stat = nameToStatLUT[string.match(frag_details.name,'(%a+)')]
+		local primary_stat_value = frag_details.stats[primary_stat]
+		local tex = UI.CreateFrame("Texture", string.format("frm_%d", i), recycleFrame)
+		tex:SetTexture("Rift", frag_details.icon)
+		tex:SetWidth(50)
+		tex:SetHeight(50)
+		print('icon: ', frag_details.icon)
+		print(string.format("primary stat: %s = %d", primary_stat, primary_stat_value or -1))
+		for k,v in pairs(frag_details.stats) do
+			print(k,v)
+		end
+	end
+	recycleFrame:SetVisible(true)
 end
 
 function find_empty_bag_slot(bagnumber, slotnumber)
