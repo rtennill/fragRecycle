@@ -83,17 +83,17 @@ function resetVariables()
 	btniconsize  = nil
 	btniconlock  = nil
 	btniconbackground = nil
-	
+
 	setVariables()
 	varToForm()
-	
+
 	fragframe.FrameX = (UIParent:GetWidth() / 2) - (fragframe.Width / 2)
 	fragframe.FrameY = (UIParent:GetHeight() / 2) - (fragframe.Height / 2)
 	btnframe.FrameX = (UIParent:GetWidth() / 2) - (btnframe.Width / 2)
 	btnframe.FrameY = (UIParent:GetHeight() / 2) - (btnframe.Height / 2)
-	
+
 	saveLoc()
-	
+
 	fragframe:SetPoint(0,0,UIParent,0,0,fragframe.FrameX,fragframe.FrameY)
 
 	btnframe.framelock = btniconlock
@@ -102,13 +102,13 @@ function resetVariables()
 	btnframe:SetWidth(btnframe.Width)
 	btnframe:SetHeight(btnframe.Height)
 	btnframe.icon:SetWidth(btnframe.Width)
-	btnframe.icon:SetHeight(btnframe.Height)	
+	btnframe.icon:SetHeight(btnframe.Height)
 	btnframe:SetPoint(0,0,UIParent,0,0,btnframe.FrameX,btnframe.FrameY)
 	if (btniconbackground) then
 		btnframe:SetBackgroundColor(1,1,1,0.5)
 	else
 		btnframe:SetBackgroundColor(0,0,0,0)
-	end	
+	end
 end
 
 function varToForm()
@@ -172,7 +172,7 @@ function varToForm()
 	else
 		fragframe.cb[43]:SetChecked(true)
 	end
-end	
+end
 
 function FormTovar()
 	for i = 1,7 do
@@ -192,17 +192,16 @@ function FormTovar()
 	useinv = fragframe.cb[38]:GetChecked()
 	usebags = fragframe.cb[39]:GetChecked()
 	pri_andorMode = fragframe.cb[41]:GetChecked()
-	sec_andorMode = fragframe.cb[43]:GetChecked()	
-end	
+	sec_andorMode = fragframe.cb[43]:GetChecked()
+end
 
 function inifragles(a)
 	if a~= "fragRecycle" then
 		return
-	end	
+	end
 	setVariables()
 	createUI()
 	varToForm()
---	print("fragRecycle int.")
 end
 
 local rarityNames = {
@@ -283,7 +282,6 @@ end
 function createUI()
 	local k = 0
 	local frame_context = UI.CreateContext("FRAME")
---	frame_context:SetSecureMode("restricted")
 	fragframe = UI.CreateFrame("Frame", "fragframe", frame_context)
 	fragframe.mouseDown	= false
 	fragframe.mouseOffsetX = 0
@@ -293,40 +291,40 @@ function createUI()
 	fragframe.Height = 300
 	if fragRecycleFrameX then fragframe.FrameX = fragRecycleFrameX else fragframe.FrameX = (UIParent:GetWidth() / 2) - (fragframe.Width / 2) end
 	if fragRecycleFrameY then fragframe.FrameY = fragRecycleFrameY else fragframe.FrameY = (UIParent:GetHeight() / 2) - (fragframe.Height / 2) end
-	
+
 	fragframe:SetLayer(1)
 	fragframe:SetBackgroundColor(1,1,1,0)
 	fragframe:SetWidth(fragframe.Width)
 	fragframe:SetHeight(fragframe.Height)
 	fragframe:SetPoint(0,0,UIParent,0,0,fragframe.FrameX,fragframe.FrameY)
-	
+
 	fragframe.Text = UI.CreateFrame("Text", "f.Text", fragframe)
 	fragframe.Text:SetLayer(11)
 	fragframe.Text:SetFontSize(16)
 	fragframe.Text:SetText(AddonId .. "	" .. Info.toc.Version)
 	fragframe.Text:SetPoint("TOPCENTER", fragframe, "TOPCENTER", 0,3)
-	fragframe.Text:SetVisible(true)	
-	
-	
+	fragframe.Text:SetVisible(true)
+
+
 	fragframe.icon = UI.CreateFrame("Texture", "f.icon", fragframe)
 	fragframe.icon:SetLayer(1)
 	fragframe.icon:SetVisible(true)
-	fragframe.icon:SetPoint("TOPLEFT", fragframe, "TOPLEFT", 0,0)	
+	fragframe.icon:SetPoint("TOPLEFT", fragframe, "TOPLEFT", 0,0)
 	fragframe.icon:SetTexture("Rift", "bg_item_package_purple.png.dds")
 	fragframe.icon:SetWidth(fragframe.Width)
 	fragframe.icon:SetHeight(fragframe.Height)
 
 	main_fragframe = UI.CreateFrame("Frame", "main_fragframe", fragframe)
 	main_fragframe:SetLayer(2)
-	main_fragframe:SetPoint("TOPLEFT", fragframe, "TOPLEFT", 20,27)	
+	main_fragframe:SetPoint("TOPLEFT", fragframe, "TOPLEFT", 20,27)
 	main_fragframe:SetWidth((fragframe.Width) - 40)
 	main_fragframe:SetHeight(55)
 	main_fragframe:SetBackgroundColor(1,1,1,0)
 	main_fragframe:SetVisible(true)
-	
+
 	pri_fragframe = UI.CreateFrame("Frame", "pri_fragframe", fragframe)
 	pri_fragframe:SetLayer(2)
-	pri_fragframe:SetPoint("TOPLEFT", fragframe, "TOPLEFT", 20,94)	
+	pri_fragframe:SetPoint("TOPLEFT", fragframe, "TOPLEFT", 20,94)
 	pri_fragframe:SetWidth((fragframe.Width/2) - 25)
 	pri_fragframe:SetHeight(140)
 	pri_fragframe:SetBackgroundColor(1,1,1,0)
@@ -334,12 +332,12 @@ function createUI()
 
 	sec_fragframe = UI.CreateFrame("Frame", "sec_fragframe", fragframe)
 	sec_fragframe:SetLayer(2)
-	sec_fragframe:SetPoint("TOPRIGHT", fragframe, "TOPRIGHT", -20,94)	
+	sec_fragframe:SetPoint("TOPRIGHT", fragframe, "TOPRIGHT", -20,94)
 	sec_fragframe:SetWidth((fragframe.Width/2) - 25)
 	sec_fragframe:SetHeight(140)
 	sec_fragframe:SetBackgroundColor(1,1,1,0)
 	sec_fragframe:SetVisible(true)
-	
+
 	tooltipframe = UI.CreateFrame("Frame", "tooltipframe", fragframe)
 	tooltipframe:SetLayer(20)
 	tooltipframe:SetBackgroundColor(0,0,0,1)
@@ -347,7 +345,7 @@ function createUI()
 	tooltipframe.text = UI.CreateFrame("Text", "tooltipframe", tooltipframe)
 	tooltipframe.text:SetPoint("CENTER", tooltipframe, "CENTER", 0, 0)
 	tooltipframe.text:SetFontSize(16)
-	
+
 	function tooltipframe.text.Event:Size()
 		tooltipframe:SetWidth(tooltipframe.text:GetWidth()+8)
 		tooltipframe:SetHeight(tooltipframe.text:GetHeight()+8)
@@ -382,23 +380,23 @@ function createUI()
 	fragframe.btn[4]:ClearAll()
 	fragframe.btn[4]:SetSkin("close")
 	fragframe.btn[4]:SetPoint("TOPRIGHT", fragframe, "TOPRIGHT", -5,0)
-	
+
 	fragframe.btn[5]:SetWidth(fragframe.btn[4]:GetWidth())
 	fragframe.btn[5]:SetHeight(fragframe.btn[4]:GetHeight())
 	fragframe.btn[5]:SetPoint("TOPLEFT", fragframe, "TOPLEFT", 5,0)
 	fragframe.btn[5]:SetBackgroundColor(1,1,1,0)
-	
+
 	fragframe.btn[5].icon = UI.CreateFrame("Texture", "f.btn.Text", fragframe.btn[5])
 	fragframe.btn[5].icon:SetPoint("TOPLEFT", fragframe.btn[5], "TOPLEFT")
 	fragframe.btn[5].icon:SetWidth(38)
 	fragframe.btn[5].icon:SetHeight(38)
 	fragframe.btn[5].icon:SetTexture("Rift", "AATree_I38.dds")
 	fragframe.btn[5].icon:SetWidth(fragframe.btn[5]:GetWidth())
-	fragframe.btn[5].icon:SetHeight(fragframe.btn[5]:GetHeight())		
+	fragframe.btn[5].icon:SetHeight(fragframe.btn[5]:GetHeight())
 	fragframe.btn[5]:SetWidth(0)
 	fragframe.btn[5]:SetHeight(0)
 	fragframe.btn[5].icon:SetVisible(true)
-	
+
 	local btn1 = fragframe.btn[1]
 	function btn1.Event:LeftPress()
 		fags_to_inv()
@@ -419,12 +417,7 @@ function createUI()
 	end
 
 	local ico1 = fragframe.btn[5].icon
---	function ico1.Event:MouseIn()
---		ico1:SetTexture("Rift", "AATree_I3A.dds")
---	end
---	function ico1.Event:MouseOut()
---		ico1:SetTexture("Rift", "AATree_I38.dds")
---	end
+
 	showtooltips = false
 	tooltip(ico1, true)
 	ico1.tooltip = 'toggle tooltips'
@@ -441,7 +434,7 @@ function createUI()
 		end
 	end
 
-	
+
 	fragframe.cb = {}
 	for i = 1,7 do
 		local cb = UI.CreateFrame("RiftCheckbox", "f.cb1", main_fragframe)
@@ -514,7 +507,7 @@ function createUI()
 		k = i - 24
 		if k >= 0 then
 			tooltip(fragframe.cb[i])
-			fragframe.cb[i].tooltip = "match if stat includes " .. returnStat(i - 23)		
+			fragframe.cb[i].tooltip = "match if stat includes " .. returnStat(i - 23)
 			fragframe.cb[i].Text:SetText(returnStat(i - 23))
 			if (k % 2) == 0 then
 				fragframe.cb[i]:SetPoint("TOPLEFT", sec_fragframe, "TOPLEFT", 3,10 + math.floor(k / 2) * 18)
@@ -548,13 +541,13 @@ function createUI()
 		k = i - 38
 		if (k % 2) == 0 then
 			tooltip(fragframe.cb[i])
-			fragframe.cb[i].tooltip = "include fragmnets found in the fragment inventory"		
+			fragframe.cb[i].tooltip = "include fragmnets found in the fragment inventory"
 			fragframe.cb[i].Text:SetText("recycle fragment inv")
 			fragframe.cb[i]:SetPoint("TOPLEFT", fragframe, "TOPLEFT", 23,239)
 			fragframe.cb[i].Text:SetPoint("TOPLEFT", fragframe.cb[i], "TOPRIGHT",5,-3)
 		else
 			tooltip(fragframe.cb[i])
-			fragframe.cb[i].tooltip = "include fragmnets found in the bag inventory"		
+			fragframe.cb[i].tooltip = "include fragmnets found in the bag inventory"
 			fragframe.cb[i].Text:SetText("recycle bag inv")
 			fragframe.cb[i]:SetPoint("TOPLEFT",  fragframe, "TOPLEFT", 208,239)
 			fragframe.cb[i].Text:SetPoint("TOPLEFT", fragframe.cb[i], "TOPRIGHT",-5,-3)
@@ -598,7 +591,7 @@ function createUI()
 		fragframe.cb[i].Text:SetLayer(11)
 		if i  == 42 then
 			tooltip(fragframe.cb[i])
-			fragframe.cb[i].tooltip = "if they match the main search AND this search."		
+			fragframe.cb[i].tooltip = "if they match the main search AND this search."
 			fragframe.cb[i].Text:SetText("AND")
 			fragframe.cb[i].Text:SetPoint("TOPRIGHT", sec_fragframe, "TOPRIGHT",-3,-11)
 			fragframe.cb[i]:SetPoint("TOPRIGHT",  fragframe.cb[i].Text, "TOPLEFT", 0,3)
@@ -612,8 +605,8 @@ function createUI()
 		end
 		fragframe.cb[i]:SetVisible(true)
 		fragframe.cb[i].Text:SetVisible(true)
-	end	
-	
+	end
+
 	local cb8 = fragframe.cb[8]
 	function cb8.Event:CheckboxChange()
 		if (fragframe.cb[8]:GetChecked()) then
@@ -624,7 +617,7 @@ function createUI()
 			for i = 40,41 do
 				fragframe.cb[i]:SetEnabled(true)
 				fragframe.cb[i].Text:SetFontColor(1,1,1)
-			end			
+			end
 		else
 			for i = 9,22 do
 				fragframe.cb[i]:SetEnabled(false)
@@ -641,12 +634,12 @@ function createUI()
 		if (fragframe.cb[23]:GetChecked()) then
 			for i = 24,37 do
 				fragframe.cb[i]:SetEnabled(true)
-				fragframe.cb[i].Text:SetFontColor(1,1,1)				
+				fragframe.cb[i].Text:SetFontColor(1,1,1)
 			end
 			for i = 42,43 do
 				fragframe.cb[i]:SetEnabled(true)
 				fragframe.cb[i].Text:SetFontColor(1,1,1)
-			end			
+			end
 		else
 			for i = 24,37 do
 				fragframe.cb[i]:SetEnabled(false)
@@ -661,7 +654,7 @@ function createUI()
 
 	local cb40 = fragframe.cb[40]
 	function cb40.Event:CheckboxChange()
-		if (fragframe.cb[40]:GetChecked()) then	
+		if (fragframe.cb[40]:GetChecked()) then
 			if (fragframe.cb[41]:GetChecked() == true) then
 				fragframe.cb[41]:SetChecked(false)
 			end
@@ -673,7 +666,7 @@ function createUI()
 	end
 	local cb41 = fragframe.cb[41]
 	function cb41.Event:CheckboxChange()
-		if (fragframe.cb[41]:GetChecked()) then	
+		if (fragframe.cb[41]:GetChecked()) then
 			if (fragframe.cb[40]:GetChecked() == true) then
 				fragframe.cb[40]:SetChecked(false)
 			end
@@ -685,7 +678,7 @@ function createUI()
 	end
 	local cb42 = fragframe.cb[42]
 	function cb42.Event:CheckboxChange()
-		if (fragframe.cb[42]:GetChecked()) then	
+		if (fragframe.cb[42]:GetChecked()) then
 			if (fragframe.cb[43]:GetChecked() == true) then
 				fragframe.cb[43]:SetChecked(false)
 			end
@@ -697,7 +690,7 @@ function createUI()
 	end
 	local cb43 = fragframe.cb[43]
 	function cb43.Event:CheckboxChange()
-		if (fragframe.cb[43]:GetChecked()) then	
+		if (fragframe.cb[43]:GetChecked()) then
 			if (fragframe.cb[42]:GetChecked() == true) then
 				fragframe.cb[42]:SetChecked(false)
 			end
@@ -707,8 +700,8 @@ function createUI()
 			end
 		end
 	end
-	
-	
+
+
 	fragframe.sl = {}
 	for i = 1,3 do
 		local sl = UI.CreateFrame("RiftSlider", "f.sl", main_fragframe)
@@ -717,16 +710,6 @@ function createUI()
 		fragframe.sl[i]:SetWidth(100)
 		fragframe.sl[i]:SetPoint("TOPLEFT", main_fragframe, "TOPLEFT", 10,-13 +i * 18)
 		fragframe.sl[i]:SetVisible(true)
-		-- fragframe.sl[i].Text1 = UI.CreateFrame("Text", "f.sl.Text", fragframe)
-		-- fragframe.sl[i].Text1:SetLayer(11)
-		-- fragframe.sl[i].Text1:SetPoint("TOPLEFT", fragframe.sl[i], "TOPLEFT",-5,-20)
-		-- fragframe.sl[i].Text1:SetText(tostring(i))
-		-- fragframe.sl[i].Text1:SetVisible(true)
-		-- fragframe.sl[i].Text2 = UI.CreateFrame("Text", "f.sl.Text", fragframe)
-		-- fragframe.sl[i].Text2:SetLayer(11)
-		-- fragframe.sl[i].Text2:SetPoint("TOPRIGHT", fragframe.sl[i], "TOPRIGHT",5,-20)
-		-- fragframe.sl[i].Text2:SetText(tostring(i))
-		-- fragframe.sl[i].Text2:SetVisible(true)
 		fragframe.sl[i].Label = UI.CreateFrame("Text", "f.sl.Text", fragframe)
 		fragframe.sl[i].Label:SetLayer(11)
 		fragframe.sl[i].Label:SetPoint("CENTERLEFT", fragframe.sl[i], "CENTERRIGHT",10,-10)
@@ -738,7 +721,7 @@ function createUI()
 	fragframe.sl[1].tooltip = "search for fragmnets of this level or worse"
 	fragframe.sl[2].tooltip = "search for this level or worse"
 	fragframe.sl[3].tooltip = "search for this tier or higher"
-	
+
 	local slider1 = fragframe.sl[1]
 	slider1:SetRange(1,6)
 	function slider1.Event:SliderChange()
@@ -754,7 +737,7 @@ function createUI()
 		fragframe.sl[2].Label:SetText("Level " .. tostring(fragframe.sl[2]:GetPosition()))
 	end
 	slider2.Event:SliderChange()
-	
+
 	local slider3 = fragframe.sl[3]
 	slider3:SetRange(1,6)
 	function slider3.Event:SliderChange ()
@@ -764,8 +747,8 @@ function createUI()
 
 	fragframe:SetVisible(false)
 	moveFrame(fragframe)
-	
-	
+
+
 	btnframe = UI.CreateFrame("Frame", "btnframe", frame_context)
 	btnframe.mouseDown	= false
 	btnframe.mouseOffsetX = 0
@@ -785,15 +768,14 @@ function createUI()
 	btnframe:SetWidth(btnframe.Width)
 	btnframe:SetHeight(btnframe.Height)
 	btnframe:SetPoint(0,0,UIParent,0,0,btnframe.FrameX,btnframe.FrameY)
-	
+
 	btnframe.icon = UI.CreateFrame("Texture", "f.icon", btnframe)
 	btnframe.icon:SetLayer(2)
 	btnframe.icon:SetVisible(true)
-	btnframe.icon:SetPoint("TOPLEFT", btnframe, "TOPLEFT", 0, 0)	
---	btnframe.icon:SetTexture("fragRecycle", "textures/buttonicon.png")
+	btnframe.icon:SetPoint("TOPLEFT", btnframe, "TOPLEFT", 0, 0)
 	btnframe.icon:SetTexture("fragRecycle", "textures/buttonicon_128x128.png")
 	btnframe.icon:SetWidth(btnframe.Width)
-	btnframe.icon:SetHeight(btnframe.Height)	
+	btnframe.icon:SetHeight(btnframe.Height)
 	btnframe:SetVisible(true)
 	moveFrame(btnframe)
 
@@ -804,8 +786,7 @@ function createUI()
 			fragframe:SetVisible(true)
 		end
 	end
-	
---	okframe = UI.CreateFrame("RiftWindow", "okframe", frame_context)
+
 	okframe = UI.CreateFrame("Frame", "okframe", frame_context)
 	okframe.mouseDown	= false
 	okframe.mouseOffsetX = 0
@@ -826,10 +807,10 @@ function createUI()
 	okframe.icon = UI.CreateFrame("Texture", "f.icon", okframe)
 	okframe.icon:SetLayer(2)
 	okframe.icon:SetVisible(true)
-	okframe.icon:SetPoint("TOPLEFT", okframe, "TOPLEFT", 0, 0)	
+	okframe.icon:SetPoint("TOPLEFT", okframe, "TOPLEFT", 0, 0)
 	okframe.icon:SetTexture("Rift", "bg_item_package_purple.png.dds")
 	okframe.icon:SetWidth(okframe.Width)
-	okframe.icon:SetHeight(okframe.Height)	
+	okframe.icon:SetHeight(okframe.Height)
 
 	okframe.Text = UI.CreateFrame("Text", "f.cb.Text", okframe)
 	okframe.Text:SetLayer(11)
@@ -837,7 +818,7 @@ function createUI()
 	okframe.Text:SetText(tostring(okframe.Text:GetFontSize()))
 	okframe.Text:SetPoint("CENTER", okframe, "CENTER", 0,-20)
 	okframe.Text:SetVisible(true)
-	
+
 	okframe.btn = {}
 	for i = 1,2 do
 		local btn = UI.CreateFrame("RiftButton", "f.btn", okframe)
@@ -854,10 +835,10 @@ function createUI()
 	end
 	okframe.btn[1]:SetText("OK")
 	okframe.btn[2]:SetText("Cancel")
-	
+
 	local btn1 = okframe.btn[1]
 	function btn1.Event:LeftPress()
-		okframe:SetVisible(false)	
+		okframe:SetVisible(false)
 		okframe.mouseDown	= false
 		okframe.mouseOffsetX = 0
 		okframe.mouseOffsetY = 0
@@ -877,8 +858,8 @@ function createUI()
 		okframe:SetPoint(0,0,UIParent,0,0,okframe.FrameX,okframe.FrameY)
 	end
 
-	moveFrame(okframe)		
-	okframe:SetVisible(false)	
+	moveFrame(okframe)
+	okframe:SetVisible(false)
 end
 
 function tooltip(frame, always)
@@ -897,11 +878,9 @@ function tooltip(frame, always)
 end
 
 function moveFrame(frame)
---	local frame = target--:GetParent()
 	function frame.Event:RightDown()
 		if (frame.framelock == false) then
 			frame.mouseDown = true
-			--print(mouseDown)
 			SHmouse = Inspect.Mouse()
 			frame.mouseOffsetX = frame.FrameX - SHmouse.x
 			frame.mouseOffsetY = frame.FrameY - SHmouse.y
@@ -910,12 +889,10 @@ function moveFrame(frame)
 	function frame.Event:RightUp()
 		frame.mouseDown = false
 		saveLoc()
-		--print(mouseDown)
 	end
 	function frame.Event:RightUpoutside()
 		frame.mouseDown = false
 		saveLoc()
-		--print(mouseDown)
 	end
 	function frame.Event:MouseMove()
 		if frame.mouseDown then
@@ -928,7 +905,7 @@ function moveFrame(frame)
 			frame:SetWidth(frame.Width)
 			frame:SetHeight(frame.Height)
 			frame.FrameX = SHnewX
-			frame.FrameY = SHnewY					
+			frame.FrameY = SHnewY
 		end
 	end
 end
@@ -937,7 +914,7 @@ end
 function recycle()
 -- generate table containing all frags from inv and bag that we are using
 	if not useinv then
-		if not usebags then 
+		if not usebags then
 			print("nothing to do")
 			return
 		end
@@ -959,13 +936,13 @@ function recycle()
 			end
 		end
 	end
-	
+
 	if table.getn(frag_table) == 0 then
 		print("no fragments found")
 		return
-	end	
+	end
 
-	
+
 	local Rarity_tbl = {}
 	for x = 1, fragmentRarity do
 		table.insert(Rarity_tbl, returnRarity(x))
@@ -985,7 +962,7 @@ function recycle()
 			table.insert(secondary_tbl, returnStat(k))
 		end
 	end
-	
+
 	for k,id in pairs(frag_table) do
 		local fragmentAffinity_found = false
 		local fragmentRarity_found = false
@@ -993,7 +970,7 @@ function recycle()
 		local fragmentTier_found = false
 		local primeStats_found = false
 		local secondStats_found = false
-		
+
 		local item_details = Inspect.Item.Detail(id)
 		if item_details.rarity == nil then item_details.rarity = "common" end
 
@@ -1003,7 +980,6 @@ function recycle()
 		end
 		if tonumber(item_details.infusionLevel) <= infusionLevel then infusionLevel_found = true end
 		if tonumber(item_details.fragmentTier) >= _fragmentTier then fragmentTier_found = true end
-		--print(item_details.fragmentTier,_fragmentTier,fragmentTier,fragmentTier_found)
 		if (primeStats[1]) then
 			local nSplit = split(item_details.name,"%S+")
 			for key, val in pairs(primary_tbl) do
@@ -1011,13 +987,13 @@ function recycle()
 			end
 		end
 		if (secondStats[1]) then
-			for stat_key, stat_val in pairs(item_details.stats) do			
+			for stat_key, stat_val in pairs(item_details.stats) do
 				for key, val in pairs(secondary_tbl) do
 					if stat_key == val then secondStats_found = true end
 				end
 			end
 		end
-				
+
 		-- print(fragmentAffinity_found)
 		-- print(fragmentRarity_found)
 		-- print(infusionLevel_found)
@@ -1050,7 +1026,6 @@ function recycle()
 					if (primeStats_found) then found_flag = true end
 				end
 			end
-			--print(secondStats[1],sec_andorMode,secondstats_found)
 			if (secondStats[1]) then
 				if (sec_andorMode == true) then -- or mode
 					if (secondStats_found == true) then
@@ -1061,7 +1036,6 @@ function recycle()
 		end
 		if (found_flag) then
 			table.insert(recycle_table,item_details.id)
---			print(item_details.id)
 		end
 	end
 	if table.getn(recycle_table) > 0 then
@@ -1080,7 +1054,7 @@ function recycle()
 			outtext = outtext .. "1 fragment"
 		else
 			outtext = outtext .. tostring(table.getn(recycle_table)) .. " fragmnets"
-		end	
+		end
 		okframe.Text:SetText(outtext)
 		okframe:SetVisible(true)
 	else
@@ -1129,20 +1103,19 @@ end
 function fags_to_bags()
 	local bag = 1
 	local slot = 1
-	
+
 	for frag_inv_no = 1, 200 do
 		local frag = Inspect.Item.Detail(Utility.Item.Slot.Fragments(frag_inv_no))
 		if frag ~= nil then
 			bag, slot = find_empty_bag_slot(bag, slot)
 			if bag == nil then return end
---			print(tostring(bag) .. "	" .. tostring(slot))
 			local inv_loc = Utility.Item.Slot.Inventory(bag,slot)
 			local frag_loc = Utility.Item.Slot.Fragments(frag_inv_no)
 			Command.Item.Move(frag_loc, inv_loc)
 			slot = slot + 1
 		end
 	end
-end		
+end
 
 function fags_to_inv()
 	local items = Inspect.Item.Detail( Utility.Item.Slot.Inventory())
@@ -1151,7 +1124,6 @@ function fags_to_inv()
 	for inv_loc,v in pairs(items) do
 		local item_details = Inspect.Item.Detail(inv_loc)
 		if item_details.fragmentAffinity then
---			print(frag_inv_no)
 			frag_inv_no = find_empty_frag_slot(frag_inv_no)
 			if frag_inv_no == nil then return end
 			local frag_loc = Utility.Item.Slot.Fragments(frag_inv_no)
@@ -1159,7 +1131,7 @@ function fags_to_inv()
 			frag_inv_no = frag_inv_no + 1
 		end
 	end
-end	
+end
 local function help_msg()
 	print(AddonId .. "	" .. Info.toc.Version .. "\n" ..
 			"Type:-\n" ..
@@ -1176,7 +1148,7 @@ local function help_msg()
 end
 
 
-local function fragrecycle(params)		
+local function fragrecycle(params)
 	if (params) then
 		local pSplit = split(params,"%S+")
 		local param_found = false
@@ -1240,6 +1212,6 @@ local function fragrecycle(params)
 		help_msg()
 	end
 end
-		
+
 table.insert(Event.Addon.SavedVariables.Load.End, {inifragles, AddonId, "Addon Load"})
 table.insert(Command.Slash.Register("fragrecycle"), {fragrecycle, AddonId, "fragrecycle"})
