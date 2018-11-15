@@ -289,8 +289,8 @@ function createUI()
 	fragframe.mouseOffsetX = 0
 	fragframe.mouseOffsetY = 0
 	fragframe.framelock = false
-	fragframe.Width = 400
-	fragframe.Height = 210/0.7
+	fragframe.Width = 500
+	fragframe.Height = 300
 	if fragRecycleFrameX then fragframe.FrameX = fragRecycleFrameX else fragframe.FrameX = (UIParent:GetWidth() / 2) - (fragframe.Width / 2) end
 	if fragRecycleFrameY then fragframe.FrameY = fragRecycleFrameY else fragframe.FrameY = (UIParent:GetHeight() / 2) - (fragframe.Height / 2) end
 	
