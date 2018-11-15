@@ -1065,6 +1065,16 @@ function recycle()
 		end
 	end
 	if table.getn(recycle_table) > 0 then
+		for _, id in ipairs(recycle_table) do
+			local deets = Inspect.Item.Detail(id)
+			print('name: ' .. deets.name or 'err')
+			print('rarity: ' .. (deets.rarity or 'common') )
+			print('stats: ')
+			for k,v in pairs(deets.stats) do
+				print('',k,v)
+			end
+			print('----------')
+		end
 		local outtext = "You are about to recycle "
 		if table.getn(recycle_table) == 1 then
 			outtext = outtext .. "1 fragment"
