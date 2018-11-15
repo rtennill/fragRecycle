@@ -205,26 +205,32 @@ function inifragles(a)
 --	print("fragRecycle int.")
 end
 
+local rarityNames = {
+	"common",
+	"uncommon",
+	"rare",
+	"epic",
+	"relic",
+	"transcendent",
+	"ascended"
+}
+
+local rarityColors = {
+	{0.98, 0.98, 0.98},
+	{0.0, 0.797, 0.0},
+	{0.148, 0.496, 0.977},
+	{0.676, 0.281, 0.98},
+	{1.0, 0.5, 0.0},
+	{1.0, 0.0, 0.0},
+	{0.93, 0.51, 0.93}
+}
+
 function returnRarity(rarity)
-	if rarity == 1 then return "common" end
-	if rarity == 2 then return "uncommon" end
-	if rarity == 3 then return "rare" end
-	if rarity == 4 then return "epic" end
-	if rarity == 5 then return "relic" end
-	if rarity == 6 then return "transcendent" end
-	if rarity == 7 then return "ascended" end
-	return "gray"
+	return rarityNames[rarity] or "gray"
 end
 
 function returnRarityCol(rarity)
-	if rarity == 1 then return 0.98,	0.98,	0.98	end
-	if rarity == 2 then return 0.0,		0.797,	0.0		end
-	if rarity == 3 then return 0.148,   0.496,	0.977	end
-	if rarity == 4 then return 0.676,   0.281,	0.98	end
-	if rarity == 5 then return 1.0,     0.5,	0.0		end
-	if rarity == 6 then return 1.0,     0.0,    0.0		end
-	if rarity == 7 then return 0.93,    0.51,   0.93	end
-	return 0.34375, 0.34375, 0.34375
+	return unpack(rarityColors[rarity] or {0.34375, 0.34375, 0.34375})
 end
 
 function returnAffinity(affinity)
