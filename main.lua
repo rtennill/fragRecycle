@@ -496,7 +496,7 @@ function createUI()
 										"if set to OR then the addon will also search for fragments\n"..
 										"found from this search setting.\n"..
 										"Looks for any fragment with a name from the list."
-			fragframe.cb[i].Text:SetText("prime stat")
+			fragframe.cb[i].Text:SetText("Planar Type")
 			fragframe.cb[i]:SetPoint("TOPLEFT", pri_fragframe, "TOPLEFT", 3,-8)
 			fragframe.cb[i].Text:SetPoint("TOPLEFT", fragframe.cb[i], "TOPRIGHT",5,-3)
 			fragframe.cb[i].Text:SetFontColor(1,1,1,1)
@@ -531,7 +531,7 @@ function createUI()
 										"if set to OR then the addon will also search for fragments\n"..
 										"found from this search setting.\n"..
 										"Looks for any fragment with any stat from the list."
-			fragframe.cb[i].Text:SetText("any stat")
+			fragframe.cb[i].Text:SetText("Any Stat")
 			fragframe.cb[i]:SetPoint("TOPLEFT", sec_fragframe, "TOPLEFT", 3,-8)
 			fragframe.cb[i].Text:SetPoint("TOPLEFT", fragframe.cb[i], "TOPRIGHT",5,-3)
 		end
