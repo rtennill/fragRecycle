@@ -5,13 +5,13 @@ Identifier = "fragRecycle"
 
 Name = "fragRecycle"
 
-Description = "fragment tools from Aaeol"
+Description = "a simple tool to manage Planar Fragments. Originally by Aaeol, modified by Georgie@hailol"
 
-Email = "fragRecycle@eqrogues.com"
+Email = "rtennill@gmail.com"
 
-Version = "1.3"
+Version = "1.4-dev"
 
-Environment = "4.0"
+Environment = "4.5"
 
 RunOnStartup = {
   "main.lua"
