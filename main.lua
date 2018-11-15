@@ -426,6 +426,9 @@ function createUI()
 --		ico1:SetTexture("Rift", "AATree_I38.dds")
 --	end
 	showtooltips = false
+	tooltip(ico1, true)
+	ico1.tooltip = 'toggle tooltips'
+
 	function ico1.Event:LeftClick()
 		if showtooltips == true then
 			showtooltips = false
@@ -878,9 +881,9 @@ function createUI()
 	okframe:SetVisible(false)	
 end
 
-function tooltip(frame)
+function tooltip(frame, always)
 	function frame.Event:MouseIn()
-		if showtooltips then
+		if showtooltips or always then
 			if frame.tooltip ~= nil then
 				tooltipframe:SetPoint("BOTTOMLEFT",frame,"TOPRIGHT",40,-40)
 				tooltipframe.text:SetText(tostring(frame.tooltip))
